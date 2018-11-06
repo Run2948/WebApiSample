@@ -124,6 +124,10 @@
     }
 ```
 
+## 文件上传与下载
+* [Asp.Net WebApi2 文件图片上传与下载功能](https://www.jb51.net/article/114903.htm)
+* [Asp.Net WebApi2 利用ByteArrayContent和StreamContent分别实现下载文件示例](https://codedefault.com/p/asp-net-web-api-2-use-bytearraycontent-and-streamcontent-download-multiple-file-include-compress-zip)
+
 ## 结果展示
 ![](./5.png)
 ![](./6.png)

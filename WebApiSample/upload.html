@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.16.2/fine-uploader.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var appDomain = "http://localhost:3997/";
+      $("#btn_fileUpload").click(function () {
+        /**
+         * 用ajax方式上传文件  -----------
+         * */
+        //-------asp.net webapi fileUpload
+        //
+        var formData = new FormData($("#uploadForm")[0]);
+        $.ajax({
+          url: appDomain + 'api/Files',
+          type: 'POST',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            console.log(JSON.stringify(data));
+          },
+          error: function (data) {
+            console.log(JSON.stringify(data));
+          }
+        });
+        //----end asp.net webapi fileUpload
+        //----.net core webapi fileUpload
+        // var fileUpload = $("#files").get(0);
+        // var files = fileUpload.files;
+        // var data = new FormData();
+        // for (var i = 0; i < files.length; i++) {
+        //    data.append(files[i].name, files[i]);
+        // }
+        // $.ajax({
+        //   type: "POST",
+        //   url: appDomain+'api/Files',
+        //   contentType: false,
+        //   processData: false,
+        //   data: data,
+        //   success: function (data) {
+        //     console.log(JSON.stringify(data));
+        //   },
+        //   error: function () {
+        //     console.log(JSON.stringify(data));
+        //   }
+        // });
+        //--------end net core webapi fileUpload
+        /**
+         * ajaxfileupload.js 方式上传文件
+         * */
+        // $.ajaxFileUpload({
+        //   type: 'post',
+        //   url: appDomain + 'api/Files',
+        //   secureuri: false,
+        //   fileElementId: 'files',
+        //   success: function (data) {
+        //     console.log(JSON.stringify(data));
+        //   },
+        //   error: function () {
+        //     console.log(JSON.stringify(data));
+        //   }
+        // });
+      });
+      //end click
+    })
+    </script>
+</head>
+<body>
+<article>
+    <header>
+        <h2>article-form</h2>
+    </header>
+    <p>
+        <form action="/" method="post" id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="files" name="files" placeholder="file" multiple>file-multiple属性可以选择多项<br><br>
+            <input type="button" id="btn_fileUpload" value="fileUpload">
+        </form>
+    </p>
+</article>
+</body>
+</html>
